@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit article</h1>
+    <form action="/article/<%= edit.id %>?_method=PATCH" method="post" id="new" style="margin: 50px">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Title</label>
+          <input type="text" name="title" value="<%= edit.title %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">markdown</label>
+            <input type="text" name="markdown" value="<%= edit.markdown %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">description</label>
+            <input type="text" name="description" value="<%= edit.description %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+    <form action="/article/<%= edit.id %>?_method=PATCH" method="post" id="edit">
+        <label for="user">Username</label>
+        <input type="text" name="user" value="<%= edit.user %>">
+        <button type="submit">Save Comment</button>
+        <br />
+        <label for="article">Comment</label>
+    </form>
+    <textarea name="text" form="edit" cols="40" row="8" placeholder="Type here..."><%= edit.text %></textarea>
+</body>
+</html>

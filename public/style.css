@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    height: 100vh;
+}
+li{
+    margin: 70px;
+}
+.main{
+    width:25%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.cont{
+    background-color: yellow;
+    margin: 50px;
+    height: 150px;
+}
+.hel{
+    text-decoration: none;
+    color: white;
+}
