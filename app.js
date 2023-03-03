@@ -14,9 +14,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/articleDB").then(()=>{
     console.log("DB connected");
 });
 
-
-
-
 app.get("/article",async(req,res)=>{
     const Allarticles=await Article.find();
     res.render("templete",{article: Allarticles});
@@ -25,35 +22,27 @@ app.get("/article",async(req,res)=>{
 app.get("/article/new",(req,res)=>{
     res.render("form");
 });
-app.get("/comments/:id",(req,res)=>{
-    if(req.params.id<comment.length)
-    {
-        const comt=comment.find((com)=> com.id==req.params.id);
-        res.render("show",{find: comt});
-    }else{
-        res.send(`<h1>Invalid Comment</h1>
-                    <h1><a href="/comments"> go to comments</a></h1>`);
-    }
-});
 app.get("/article/this-new",async(req,res)=>{
     const b=await Article.find({title: req.query.tit});
     res.render("this",{dem: b[0]._id});
 })
 app.get("/article/:id",(req,res)=>{
-    res.render("hello",{id: req.params.id});
+    const b=Article.find({title: req.params.id});
+    res.render("hello",{id: b});
 })
 app.get("/article/:id/edit",(req,res)=>{
-    const com=comment.find((con)=>con.id==req.params.id);
+    const com=Article.find({_id: req.params.id});
     res.render("editform",{edit: com});
 })
 app.patch("/article/:id",async(req,res)=>{
-    await Article.UpdateOne({_id: req.params.id},{$set :req.body})
+    const b=await Article.find({title: req.params.id});
+    await Article.UpdateOne({_id: b[0]._id},{$set :req.body})
     res.redirect("/article/"+req.params.id);
 });
-app.delete("/article/:id",(req,res)=>{
-    comment.filter((cont)=> cont.id=req.params.id);
-    console.log(comment);
-    res.redirect("/comments");
+app.delete("/article/:id",async(req,res)=>{
+    const b=await Article.find({title: req.params.id});
+    await Article.deleteOne({_id: b[0]._id});
+    res.redirect("/article");
 })
 app.post("/article",(req,res)=>{
     const item=new Article({

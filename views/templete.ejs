@@ -22,13 +22,13 @@
         <h2>description <%= dem.description.slice(0,10) %></h2>
         <p><%= new Date().toISOString().slice(0, 10) %></p>
         <div class="main">
-        <form action="article/<%=dem.id %>" method="get">
+        <form action="article/<%=dem.title %>" method="get">
             <button type="button" class="btn btn-primary">open the article</button>
         </form>
-        <form action="article/<%= dem.id %>?_method=DELETE" method="post">
+        <form action="article/<%= dem.title %>?_method=DELETE" method="post">
             <button type="button" class="btn btn-primary">Delete</button>
         </form>
-        <form action="article/<%= dem.id %>?_method=PATCH" method="post">
+        <form action="article/<%= dem.title %>?_method=PATCH" method="post">
             <button type="button" class="btn btn-primary">Edit</button>
         </form>
     </div>
